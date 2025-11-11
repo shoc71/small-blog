@@ -34,7 +34,7 @@ export default function AddPage() {
       return;
     }
 
-    const res = await fetch("/api/posts", {
+    const res = await fetch(`${window.location.origin}/api/posts`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, author, description }),
