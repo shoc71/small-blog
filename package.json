@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build --prefix client",
-    "install": "cd my-app && npm install"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
