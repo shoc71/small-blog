@@ -1,0 +1,23 @@
+{
+  "name": "small-blog",
+  "version": "1.0.0",
+  "description": "https://shoc71.github.io/small-blog/posts/intelligence.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd my-app && npm run build",
+    "install": "cd my-app && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shoc71/small-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shoc71/small-blog/issues"
+  },
+  "homepage": "https://github.com/shoc71/small-blog#readme"
+}
