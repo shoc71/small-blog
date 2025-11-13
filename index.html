@@ -8,13 +8,12 @@
     <title>Post hub</title>
 </head>
 <body class="bg-black text-white min-vh-100">
-    <h1 class="p-2 text-center text-white">Post Hub</h1>
+    <h1 class="p-4 text-center text-white">Post Hub</h1>
     <div class="container w-75">
-        <div class="d-flex justify-content-between align-items-center mb-1">
-            <button class="btn btn-secondary" id="order" onclick="renderReversedTable()">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <button class="btn btn-secondary" id="order">
                 Order
             </button>
-            <!-- filter based on matching text in tags and Title(s) -->
             <input 
                 type="text" 
                 class="form-control bg-black text-white" 
@@ -24,11 +23,15 @@
             >
             <!-- toggle button for complete/incomplete -->
         </div>
-        <table class="table table-dark text-center" id="displayTable">
+        <table class="table table-dark table-hover text-center" id="displayTable">
+            <caption>
+                *Title(s) are clickable |
+
+            </caption>
             <thead>
-                <tr>
+                <tr class="table-active">
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
+                    <th scope="col">Title*</th>
                     <th scope="col">Date</th>
                     <th scope="col">Related</th>
                     <th scope="col">Tags</th>
@@ -38,9 +41,15 @@
                 <!-- table.js insertable data -->
             </tbody>
         </table>
+        <div class=""></div>
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-lg btn-dark" id="prev">Previous</button>
+            <span id="pageInfo" class="text-white px-2">Page 1</span>
+            <button class="btn btn-lg btn-dark" id="next">Next</button>
+        </div>
     </div>
 
-    <footer class="container w-75">
+    <footer class="container w-75 my-5">
         <div class="d-flex justify-content-end">
             <a href="https://github.com/shoc71/small-blog" target="_blank" class="btn btn-sm btn-outline-light">
                 <img 

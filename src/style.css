@@ -1,10 +1,27 @@
 .hidden{
-    display: none !important;
+  display: none !important;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: all;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* hover effect even when disabled */
+.btn:disabled:hover {
+  background-color: #505050;  
 }
 
 #searchInput::placeholder {
-  color: #bbb; /* light gray, visible on dark background */
-  opacity: 1;  /* ensure it's not faded */
+  color: #bbb;
+  opacity: 1;  
 }
 
 .link-white-hover {
@@ -13,5 +30,15 @@
 }
 
 .link-white-hover:hover {
-  color: #f39c12; /* any hover color you want */
+  color: #f39c12;
+}
+
+.tag-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 0.2rem;
 }

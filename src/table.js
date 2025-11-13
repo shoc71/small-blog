@@ -1,52 +1,132 @@
-// window init
+// ------------------
+// Constant
+// ------------------
+const displayTable = document.querySelector("#displayTable tbody");
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("prev");
+const orderContentButton = document.querySelector("#order");
+const searchInput = document.getElementById("searchInput");
+const pageInfo = document.getElementById("pageInfo");
+
+let reverseOrderButtonClicked = false;
+let currentIndex = 0;
+const pageSize = 7;
+
+const postData = [
+  { name: "Intelligence", date: "2025-10-20", tags: ["Analysis", "INCOMPLETE"] },
+  { name: "Smart Characters", date: "2025-10-22", tags: ["Hot Take", "INCOMPLETE"] },
+  { name: "Social Status", date: "2025-11-11", tags: ["New", "INCOMPLETE"] },
+  { name: "Creativity", date: "2025-10-25", tags: ["Idea", "INCOMPLETE"] },
+  { name: "Philosophy", date: "2025-10-28", tags: ["Thought", "INCOMPLETE"] },
+  { name: "Technology", date: "2025-11-01", tags: ["Tech", "INCOMPLETE"] },
+  { name: "History", date: "2025-11-03", tags: ["Past", "INCOMPLETE"] },
+  { name: "Science", date: "2025-11-05", tags: ["Research", "INCOMPLETE"] },
+  { name: "Literature", date: "2025-11-07", tags: ["Books", "INCOMPLETE"] },
+  { name: "Psychology", date: "2025-11-09", tags: ["Mind", "INCOMPLETE"] },
+  { name: "Sociology", date: "2025-11-10", tags: ["Society", "INCOMPLETE"] },
+];
+
+// Create links dynamically
+const posts = Object.fromEntries(
+  postData.map(post => [
+    post.name.replace(/\s+/g, "_"),
+    `<a href="./posts/${post.name.toLowerCase().replace(/\s+/g, "-")}.html" class="link-white-hover">${post.name}</a>`
+  ])
+);
+
+const tagColors = {
+  "Analysis": "#1abc9c",
+  "Hot Take": "#e74c3c",
+  "New": "#3498db",
+  "Idea": "#f1c40f",
+  "Thought": "#9b59b6",
+  "Tech": "#16a085",
+  "Past": "#95a5a6",
+  "Research": "#2980b9",
+  "Books": "#d35400",
+  "Mind": "#8e44ad",
+  "Society": "#2ecc71",
+  "INCOMPLETE": "#7f8c8d"
+};
+
+const tableContents = postData.map((post, index) => ({
+  id: index + 1,
+  link: posts[post.name.replace(/\s+/g, "_")],
+  date: post.date,  // use the custom date here
+  tags: post.tags
+}));
+
+
+// init render
+let filteredData = [...tableContents]
+
+// ------------------
+// Render function
+// ------------------
+function renderTable() {
+    const displayData = reverseOrderButtonClicked ? [...filteredData].reverse() : filteredData;
+    const pageData = displayData.slice(currentIndex, currentIndex + pageSize);
+
+    displayTable.innerHTML = pageData.map(row => `
+        <tr>
+        <td>${row.id}</td>
+        <td style="">${row.link}</td>
+        <td>${row.date}</td>
+        <td style="max-width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" class="text-turncate">
+            ${row.related || undefined}
+        </td>
+        <td style="max-width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+            ${row.tags.map(tag => `
+                <span class="tag-badge" style="background-color: ${tagColors[tag] || '#555'}">
+                    ${tag}
+                </span>
+            `).join(" ")}
+        </td>
+        </tr>
+    `).join("");
+
+    prevButton.disabled = currentIndex === 0;
+    nextButton.disabled = currentIndex + pageSize >= filteredData.length;
+
+    // Update page number
+  const currentPage = Math.floor(currentIndex / pageSize) + 1;
+  const totalPages = Math.ceil(filteredData.length / pageSize) || 1;
+  pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+}
+
+// mouse clicks
+orderContentButton.addEventListener("click", () => {
+    reverseOrderButtonClicked = !reverseOrderButtonClicked;
+    currentIndex = 0;
+    renderTable();
+});
+
+// Next / Previous
+nextButton.addEventListener("click", () => {
+    currentIndex += pageSize;
+    renderTable();
+});
+
+prevButton.addEventListener("click", () => {
+    currentIndex -= pageSize;
+    renderTable();
+});
+
+// Live search filter
+searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+
+    filteredData = tableContents.filter(row => {
+        const titleText = row.link.replace(/<[^>]+>/g, "").toLowerCase(); // strip <a> tags
+        const tagsText = row.tags.join(" ").toLowerCase();
+        return titleText.includes(query) || tagsText.includes(query);
+    });
+
+    currentIndex = 0; // reset to first page
+    renderTable();
+});
+
+// Initial render
 window.addEventListener("DOMContentLoaded", () => {
-    const displayTable = document.querySelector("#displayTable tbody");
-    const orderContentButton = document.querySelector("#order");
-    const searchInput = document.getElementById("searchInput");
-    let reverseOrderButtonClicked = false;
-
-    const posts = {
-        Intelligence: `<a href="./posts/intelligence.html" class="link-white-hover">Intelligence</a>`,
-        Smart_Chars: `<a href="./posts/smart-chars.html" class="link-white-hover">Smart Characters</a>`,
-        Social_Ladder: `<a href="./posts/social-status.html" class="link-white-hover">Social Status</a>`
-    }
-
-    const tableContents = [
-        { id: 1, link: posts.Intelligence, date:"2025-10-20", tags: ["Analysis", "INCOMPLETE"]},
-        { id: 2, link: posts.Smart_Chars, date:"2025-10-22", tags: ["Hot Take", "INCOMPLETE"]},
-        { id: 3, link: posts.Social_Ladder, date:"2025-11-11", tags: ["New", "INCOMPLETE"]},
-    ]
-
-    function renderTable(data) {
-        displayTable.innerHTML = data.map(row => `
-            <tr>
-                <td>${row.id}</td>
-                <td>${row.link}</td>
-                <td>${row.date}</td>
-                <td>${row.related || undefined}</td>
-                <td>${row.tags.join(", ")}</td>
-            </tr>
-        `).join("");
-    }
-
-    // init render
-    let display = reverseOrderButtonClicked ? tableContents : [...tableContents].reverse();
-    renderTable(display)
-
-    // mouse clicks
-    orderContentButton.addEventListener("click", () => {
-        reverseOrderButtonClicked = !reverseOrderButtonClicked
-        let display = reverseOrderButtonClicked ? tableContents : [...tableContents].reverse();
-        renderTable(display)
-    });
-
-    // search filter
-    searchInput.addEventListener('input', function() {
-        const filter = searchInput.value.toLowerCase()
-        const rows = document.querySelectorAll("#displayTable tbody tr")
-        rows.forEach(row=> {
-            const text = row.textContent.toLocaleLowerCase();
-            row.classList.toggle('hidden', !text.includes(filter))
-        })
-    });
+  renderTable();
 });
