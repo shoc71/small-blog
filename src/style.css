@@ -1,0 +1,17 @@
+.hidden{
+    display: none !important;
+}
+
+#searchInput::placeholder {
+  color: #bbb; /* light gray, visible on dark background */
+  opacity: 1;  /* ensure it's not faded */
+}
+
+.link-white-hover {
+  color: white;
+  text-decoration: none;
+}
+
+.link-white-hover:hover {
+  color: #f39c12; /* any hover color you want */
+}
