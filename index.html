@@ -9,7 +9,7 @@
 </head>
 <body class="bg-black text-white min-vh-100">
     <h1 class="p-4 text-center text-white">Post Hub</h1>
-    <div class="container w-75">
+    <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <button class="btn btn-secondary" id="order">
                 Order
@@ -24,9 +24,9 @@
             <!-- toggle button for complete/incomplete -->
         </div>
         <table class="table table-dark table-hover text-center" id="displayTable">
-            <caption>
+            <caption style="color: white;">
                 *Title(s) are clickable |
-
+                **Filter through Tags for related content
             </caption>
             <thead>
                 <tr class="table-active">
@@ -34,7 +34,7 @@
                     <th scope="col">Title*</th>
                     <th scope="col">Date</th>
                     <th scope="col">Related</th>
-                    <th scope="col">Tags</th>
+                    <th scope="col">Tags**</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,22 +43,32 @@
         </table>
         <div class=""></div>
         <div class="d-flex justify-content-between">
-            <button class="btn btn-lg btn-dark" id="prev">Previous</button>
+            <button class="btn btn-lg btn-dark" id="prev"><strong>Previous</strong></button>
             <span id="pageInfo" class="text-white px-2">Page 1</span>
-            <button class="btn btn-lg btn-dark" id="next">Next</button>
+            <button class="btn btn-lg btn-dark" id="next"><strong>Next</strong></button>
         </div>
     </div>
 
-    <footer class="container w-75 my-5">
+    <footer class="container my-5">
         <div class="d-flex justify-content-end">
-            <a href="https://github.com/shoc71/small-blog" target="_blank" class="btn btn-sm btn-outline-light">
+            <a href="https://github.com/shoc71/" target="_blank" class="btn btn-sm btn-white mx-4">
+                <img 
+                    src="./assets/images/compass.png" 
+                    alt="Github Icon"
+                    class="rounded"
+                    width="50"
+                >
+                <span class="mx-2"><strong>Other Works</strong></span>
+            </a>
+
+            <a href="https://github.com/shoc71/small-blog" target="_blank" class="btn btn-sm btn-grey">
                 <img 
                     src="./assets/images/github-logo.png" 
                     alt="Github Icon"
                     class="rounded"
                     width="50"
                 >
-                <span class="mx-2">Source Code</span>
+                <span class="mx-2"><strong>Source Code</strong></span>
             </a>
         </div>
     </footer>
