@@ -10,20 +10,13 @@ const pageInfo = document.getElementById("pageInfo");
 
 let reverseOrderButtonClicked = false;
 let currentIndex = 0;
-const pageSize = 7;
+const pageSize = 5;
 
 const postData = [
   { name: "Intelligence", date: "2025-10-20", tags: ["Analysis", "INCOMPLETE"] },
   { name: "Smart Characters", date: "2025-10-22", tags: ["Hot Take", "INCOMPLETE"] },
+  { name: "Power Systems", date: "2025-12-20", tags: ["Power", "INCOMPLETE"] },
   { name: "Social Status", date: "2025-11-11", tags: ["New", "INCOMPLETE"] },
-  { name: "Creativity", date: "2025-10-25", tags: ["Idea", "INCOMPLETE"] },
-  { name: "Philosophy", date: "2025-10-28", tags: ["Thought", "INCOMPLETE"] },
-  { name: "Technology", date: "2025-11-01", tags: ["Tech", "INCOMPLETE"] },
-  { name: "History", date: "2025-11-03", tags: ["Past", "INCOMPLETE"] },
-  { name: "Science", date: "2025-11-05", tags: ["Research", "INCOMPLETE"] },
-  { name: "Literature", date: "2025-11-07", tags: ["Books", "INCOMPLETE"] },
-  { name: "Psychology", date: "2025-11-09", tags: ["Mind", "INCOMPLETE"] },
-  { name: "Sociology", date: "2025-11-10", tags: ["Society", "INCOMPLETE"] },
 ];
 
 // Create links dynamically
