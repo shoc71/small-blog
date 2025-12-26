@@ -14,12 +14,12 @@
     
     <!-- personal custom -->
     <link rel="stylesheet" href="./src/style.css">
+
     <title>Post hub</title>
 </head>
 <body class="bg-black text-white min-vh-100">
     <h1 class="p-4 text-center text-white">Post Hub</h1>
     <div class="container">
-        <!-- Desktop Mode -->
         <table class="table table-dark table-hover text-center" id="displayTable">
             <caption style="color: white;">
                 *Title(s) are clickable |
@@ -79,6 +79,7 @@
     <!-- personal custom -->
     <script type="module" src="./src/table.js"></script>
 
+    <!-- dataTables Injection -->
     <script>
         $(function () {
             $('#displayTable').DataTable({
@@ -92,6 +93,5 @@
             });
         });
     </script>
-
 </body>
 </html>
